@@ -23,12 +23,32 @@ function concertThis() {
 }
 
 function spotifyThis() {
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+
+    var song;
+
+    if (process.argv[3]) {
+        for (i = 3; i < process.argv.length; i++) {
+        song = process.argv[i]
+        }
+    } else { 
+        song = "I Want it That Way"
+    }
+
+
+    spotify.search({ type: 'track', query: song, limit: 1 }, function(err, data) {
+
         if (err) {
           return console.log('Error occurred: ' + err);
         }
-       
-      console.log(data.artists); 
+
+        var artists = data.tracks.items[0].artists
+        for (j = 0; j < artists.length; j++) {
+        console.log(JSON.stringify(artists[j].name, null, 2)); 
+            }
+
+        console.log(JSON.stringify(data.tracks.items[0].name, null, 2));
+        console.log(JSON.stringify(data.tracks.items[0].preview_url, null, 2));
+        console.log(JSON.stringify(data.tracks.items[0].album.name, null, 2));
       });
 }
 
