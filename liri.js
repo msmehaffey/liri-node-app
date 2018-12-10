@@ -1,5 +1,6 @@
 require("dotenv").config();
 var keys = require("./keys.js")
+var request = require('request');
 
 var Spotify = require('node-spotify-api');
 var spotify = new Spotify(keys.spotify);
@@ -24,14 +25,14 @@ function concertThis() {
 
 function spotifyThis() {
 
-    var song;
+    var song = [];
 
     if (process.argv[3]) {
         for (i = 3; i < process.argv.length; i++) {
-        song = process.argv[i]
+        song.push(process.argv[i])
         }
     } else { 
-        song = "I Want it That Way"
+        song = "The Sign Ace of Base"
     }
 
 
@@ -53,7 +54,30 @@ function spotifyThis() {
 }
 
 function movieThis() {
-    console.log(process.argv[3])
+    var movieTitle = [];
+
+    for (i = 3; i < process.argv.length; i++) {
+        movieTitle.push(process.argv[i])
+    }
+
+    request('http://www.omdbapi.com/?t=' + movieTitle + '&type=movie&apikey=ad69a25e', function (err, response) {
+
+        console.log(movieTitle)
+        if (err) {
+            return console.log('Error occurred: ' + err);
+          }
+        
+        var movieObject = JSON.parse(response.body);
+        console.log(movieObject.Title);
+        console.log(movieObject.Year);
+        console.log(movieObject.imdbRating);
+        console.log(movieObject.Ratings[1].Value);
+        console.log(movieObject.Country);
+        console.log(movieObject.Language);
+        console.log(movieObject.Plot);
+        console.log(movieObject.Actors);
+
+    });
 }
 
 function doThis() {
