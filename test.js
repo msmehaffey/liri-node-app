@@ -112,30 +112,11 @@ function movieThis(input) {
 
 function doThis() {
     fs.readFile('random.txt', 'utf8', function(err, data) {
-        // data = data.split(" , ")
-        // data = data.map(x => x.trim())
-        command = data.substring(0, data.indexOf(','))
-        song = data.substring(data.indexOf(','))
+        var commandRando = data.substring(0, data.indexOf(','))
+        var song = data.substring(data.indexOf(','))
         song = song.substring(1)
 
-        
-        spotify.search({ type: 'track', query: song, limit: 1 }, function(err, data) {
-
-            if (err) {
-              return console.log('Error occurred: ' + err);
-            }
-    
-            var artists = data.tracks.items[0].artists
-            var aList = [] 
-            for (j = 0; j < artists.length; j++) {
-            aList.push(JSON.stringify(artists[j].name, null, 2)); 
-                }
-            aPrint = aList.join(", ");
-            console.log("Artist(s): " + aPrint);
-            console.log("Song Name: " + JSON.stringify(data.tracks.items[0].name, null, 2));
-            console.log("Preview URL: " + JSON.stringify(data.tracks.items[0].preview_url, null, 2));
-            console.log("Album Name: " + JSON.stringify(data.tracks.items[0].album.name, null, 2));
-          });
-
+        console.log(commandRando)
+        spotifyThis(song)
 })
 }
