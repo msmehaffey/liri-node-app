@@ -1,11 +1,16 @@
 # liri-node-app
 
 
-LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
+LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a *_Language_* Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 
 # NPM Packages Needed (Dependencies):
 
-"bandsintown, dotenv, fs, moment, node-spotify-api, request.
+* bandsintown 
+* dotenv 
+* fs 
+* moment 
+* node-spotify-api 
+* request.
 
 
 
